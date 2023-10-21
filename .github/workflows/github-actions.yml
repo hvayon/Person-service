@@ -53,8 +53,8 @@ jobs:
         run:
           curl "$deploy_url"
 
-      - name: Sleep for 5 sec
-        run: sleep 5s
+      - name: Sleep for 300 sec
+        run: sleep 300s
         shell: bash
 
       - name: Wait for Render Deployment
