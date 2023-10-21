@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 import ru.hvayon.person.domain.Person;
 import ru.hvayon.person.model.PersonRequest;
-//import ru.hvayon.person.model.mapper.PersonMapper;
 import ru.hvayon.person.repository.PersonRepository;
 import ru.hvayon.person.service.PersonService;
 
@@ -28,7 +27,6 @@ import static java.util.Objects.requireNonNull;
 public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository personRepository;
-    //private final PersonMapper personMapper;
 
     @Transactional(readOnly = true)
     @Override
@@ -46,14 +44,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     @Transactional
-    public Integer createPerson(PersonRequest request) {
-        Person saved = new Person(
-                1,
-                request.getName(),
-                request.getAge(),
-                request.getAddress(),
-                request.getWork()
-        );
+    public Integer createPerson(@NotNull PersonRequest request) {
+        Person saved = new Person(request.getName(), request.getAge(), request.getWork(), request.getAddress());
         personRepository.save(saved);
         return saved.getId();
     }

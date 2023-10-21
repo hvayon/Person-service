@@ -3,11 +3,11 @@ package ru.hvayon.person.domain;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "persons")
+@AllArgsConstructor(staticName = "build")
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public class Person {
     @Id()
@@ -22,6 +22,16 @@ public class Person {
     private String address;
     @Column(name = "work")
     private String work;
+
+    public Person() {
+    }
+
+    public Person(String name, int age, String work, String address) {
+        this.name = name;
+        this.age = age;
+        this.work = work;
+        this.address = address;
+    }
 
     public Person(int id, String name, int age, String address, String work) {
         this.id = id;

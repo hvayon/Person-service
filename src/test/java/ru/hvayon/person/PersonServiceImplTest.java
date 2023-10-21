@@ -54,7 +54,7 @@ public class PersonServiceImplTest {
     @Test
     public void createPersonTest() {
         PersonRequest request = new PersonRequest("Mike", 27, "Developer", "SBER");
-        Person savedPerson = new Person(1, "Mike", 27, "Developer", "SBER");
+        Person savedPerson = new Person(0, "Mike", 27, "Developer", "SBER");
         when(personRepository.save(any(Person.class))).thenReturn(savedPerson);
         Integer createdPersonId = personService.createPerson(request);
         assertNotNull(createdPersonId);
