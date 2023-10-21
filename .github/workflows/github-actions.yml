@@ -58,12 +58,12 @@ jobs:
         run: sleep 5s
         shell: bash
 
-      - name: Render GitHub Action
-        uses: Bounceapp/render-action@0.7.1
+      - name: Wait for Render Deployment
+        uses: bounceapp/render-action@0.6.0
         with:
           render-token: ${{ secrets.RENDER_TOKEN }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          service-id: srv-ckmmg22216ps73fcjv30?key=58QjtGw_G_M
+          service-id: srv-ckmmg22216ps73fcjv30
           retries: 20
           wait: 30000
           sleep: 30000
