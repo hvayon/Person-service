@@ -42,7 +42,7 @@ jobs:
         run: mvn test
 
   deploy:
-    name: Deploy to Render
+    name: deploy to render
     needs: [ test ]
     runs-on: ubuntu-latest
     steps:
