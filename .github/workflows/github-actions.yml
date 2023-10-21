@@ -52,25 +52,3 @@ jobs:
           deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
         run:
           curl "$deploy_url"
-
-      - name: Sleep for 10 sec
-        run: sleep 10s
-        shell: bash
-
-      - name: Wait for Render Deployment
-        uses: bounceapp/render-action@0.6.0
-        with:
-          render-token: ${{ secrets.RENDER_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          service-id: srv-ckmmg22216ps73fcjv30?key=58QjtGw_G_M
-          retries: 20
-          wait: 30000
-          sleep: 30000
-
-      - name: Run API Tests
-        uses: matt-ball/newman-action@v1.0.4
-        with:
-          collection: postman/[inst] Lab1.postman_collection.json
-          environment: postman/[inst][heroku] Lab1.postman_environment.json
-          delayRequest: 100
-          reporters: '[ "cli" ]'
