@@ -32,7 +32,7 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public Person getPersonById(Integer id) {
         Optional<Person> person = Optional.ofNullable(personRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Person with id=" + id + " not found")));
+                .orElseThrow(() -> new EntityNotFoundException("PERSON WITH ID = " + id + " NOT FOUND")));
         return person.get();
     }
 
@@ -50,9 +50,11 @@ public class PersonServiceImpl implements PersonService {
         return saved.getId();
     }
 
+
     @Override
     public Person editPerson(int id, Map<String, Object> fields) {
-        Optional<Person> person = personRepository.findById(id);
+        Optional<Person> person = Optional.ofNullable(personRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("PERSON WITH ID = " + id + " NOT FOUND")));
         if (person.isPresent()) {
             fields.forEach((key, value) -> {
                 Field field = ReflectionUtils.findField(Person.class, key);
